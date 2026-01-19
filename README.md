@@ -4,9 +4,6 @@
 
 This repository showcases practical Web3 security concepts through reproducible experiments — from basic ERC20 tokens to advanced reentrancy attacks and defenses. All code is designed with **user safety** and **financial-grade validation** in mind.
 
-[![Deployed DApp](https://img.shields.io/badge/DApp-Vercel-000000?logo=vercel)](https://web3-project-five.vercel.app)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
 ---
 
 ## 🎯 Why This Lab?
@@ -24,29 +21,18 @@ This lab brings that **same mindset to Web3**, focusing on:
 
 ## 🔬 Experiments Included
 
-### 1. **Simple Storage**
-- Basic Solidity storage/getter pattern
-- Hardhat deployment script
-
-### 2. **MyToken (ERC20)**
-- Custom token with frontend integration
-- ✅ **Banking-style address validation** in React:
-  ```js
-  if (!/0x[a-fA-F0-9]{42}/.test(transferTo)) {
-    setError("Invalid address format (must be 42 chars, starting with 0x)");
-    return;
-  }
 3. Reentrancy Attack Lab ⚠️→✅
-表格
+
 Vulnerable Version	Secure Version
 VulnerableBank.sol – allows recursive withdrawal	SecureBank.sol – protected by ReentrancyGuard
 Attack succeeds: drains funds in one call	Attack fails: ReentrancyGuard: reentrant call
 🔍 Full test coverage with Hardhat:
-bash
 
- 
+```bash
 npx hardhat test test/reentrancy-test.js   # Shows the exploit
 npx hardhat test test/secure-bank-test.js  # Proves the fix
+```
+
 🛠️ Tech Stack
 Smart Contracts: Solidity ^0.8.20
 Framework: Hardhat
@@ -65,15 +51,8 @@ Install dependencies (using Yarn for better Windows compatibility):
 yarn install
 ```
 
-
 Run tests:
-bash
 
+```bash
 npx hardhat test
-Start the frontend:
-bash
-
-编辑
-
-
- 
+```

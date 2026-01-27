@@ -1,0 +1,31 @@
+INFO:Detectors:
+Detector: reentrancy-eth
+Reentrancy in VulnerableBank.withdraw(uint256) (contracts/VulnerableBank.sol#12-19):
+        External calls:
+        - (sent,None) = msg.sender.call{value: _amount}() (contracts/VulnerableBank.sol#15)
+        State variables written after the call(s):
+        - balances[msg.sender] -= _amount (contracts/VulnerableBank.sol#18)
+        VulnerableBank.balances (contracts/VulnerableBank.sol#5) can be used in cross function reentrancies:
+        - VulnerableBank.balances (contracts/VulnerableBank.sol#5)
+        - VulnerableBank.deposit() (contracts/VulnerableBank.sol#7-9)
+        - VulnerableBank.withdraw(uint256) (contracts/VulnerableBank.sol#12-19)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+INFO:Detectors:
+Detector: solc-version
+Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - VerbatimInvalidDeduplication
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess.
+It is used by:
+        - ^0.8.20 (contracts/VulnerableBank.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+INFO:Detectors:
+Detector: low-level-calls
+Low level call in VulnerableBank.withdraw(uint256) (contracts/VulnerableBank.sol#12-19):
+        - (sent,None) = msg.sender.call{value: _amount}() (contracts/VulnerableBank.sol#15)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+INFO:Detectors:
+Detector: naming-convention
+Parameter VulnerableBank.withdraw(uint256)._amount (contracts/VulnerableBank.sol#12) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+INFO:Slither:contracts\VulnerableBank.sol analyzed (1 contracts with 101 detectors), 4 result(s) found

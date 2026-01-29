@@ -1,0 +1,10 @@
+yarn add --dev @nomicfoundation/hardhat-ignition-ethers@^0.15.14
+ yarn add --dev  @nomicfoundation/hardhat-ignition-ethers@^0.15.14
+ yarn add --dev  @typechain/ethers-v6@^0.5.0 @typechain/hardhat@^9.0.0
+ yarn add --dev  @typechain/hardhat@^9.0.0
+
+ yarn add --dev  @types/mocha@">=9.1.0" hardhat-gas-reporter@^2.3.0 solidity-coverage@^0.8.1 typechain@^8.3.0
+ 
+ yarn add --dev  hardhat-gas-reporter@^2.3.0 
+ yarn add --dev  solidity-coverage@^0.8.1
+ yarn add --dev  typechain@^8.3.0

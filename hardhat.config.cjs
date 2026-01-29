@@ -1,3 +1,6 @@
+// hardhat.config.js
+
+require('dotenv').config(); // ← 必须放在最顶部！
 /** @type import('hardhat/config').HardhatUserConfig */
 require("@nomicfoundation/hardhat-toolbox");
 
@@ -14,6 +17,10 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 31337
-    }
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL || "https://ethereum-sepolia-rpc.publicnode.com",
+      accounts: [process.env.PRIVATE_KEY],
+    },
   }
 };
